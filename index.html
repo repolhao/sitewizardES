@@ -152,7 +152,7 @@
             display: grid;
             grid-template-columns: 1.3fr 0.7fr;
             gap: 28px;
-            align-items: center;
+            align-items: stretch;
         }
 
         /* CARD WIP (DISCRETO) */
@@ -244,7 +244,7 @@
         }
 
         .select-label {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             color: var(--dark-blue-100);
             margin-bottom: 10px;
@@ -254,8 +254,8 @@
         }
 
         .select-label img {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
         }
 
         .card-description {
@@ -268,7 +268,7 @@
         .custom-select {
             width: 100%;
             padding: 16px 18px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             color: var(--dark-blue-100);
             border: 2px solid var(--dark-blue-20);
@@ -355,45 +355,60 @@
             }
 
             .container {
-                margin-top: 30px;
+                margin-top: 28px;
                 width: 94%;
             }
 
+            .cards-grid {
+                gap: 16px;
+            }
+
+            /* CARD DE UNIDADES MAIOR EM DESTAQUE NO MOBILE */
             .select-card {
-                padding: 22px 18px;
-                border-radius: 18px;
+                padding: 28px 20px;
+                border-radius: 20px;
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
             }
 
             .select-label {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .card-description {
-                font-size: 13px;
-                margin-bottom: 16px;
+                font-size: 14px;
+                margin-bottom: 18px;
             }
 
             .custom-select {
-                font-size: 13px;
-                padding: 12px 14px;
+                font-size: 14px;
+                padding: 14px 16px;
             }
 
+            /* CARD WIP MENOR E COMPACTO ABAIXO */
             .action-card {
-                padding: 18px 16px;
-                border-radius: 18px;
+                padding: 14px 16px;
+                border-radius: 14px;
+                background-color: #ffffff;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
 
             .wip-text-title {
-                font-size: 12px;
+                font-size: 11px;
+                margin-bottom: 4px;
+            }
+
+            .wip-logo-container {
+                margin: 2px 0 10px 0;
             }
 
             .wip-logo-container img {
-                max-width: 110px;
+                max-width: 90px;
             }
 
             .btn-secondary {
-                padding: 10px 14px;
+                padding: 8px 12px;
                 font-size: 12px;
+                border-radius: 8px;
             }
         }
     </style>
@@ -427,7 +442,7 @@
     <div class="container">
         <div class="cards-grid">
 
-            <!-- CARD UNIDADES (DESTAQUE CENTRAL) -->
+            <!-- CARD UNIDADES (EM DESTAQUE MAIOR) -->
             <div class="select-card">
                 <div>
                     <div class="select-label">
@@ -453,10 +468,10 @@
                 </select>
             </div>
 
-            <!-- CARD WIP (AO LADO E DISCRETO) -->
+            <!-- CARD WIP (COMPACTO LOGO ABAIXO) -->
             <div class="action-card">
                 <div>
-                    <p class="wip-text-title">Compre seu Material Didatico da WIP aqui</p>
+                    <p class="wip-text-title">Compre seu Material Didático da WIP aqui</p>
                     <div class="wip-logo-container">
                         <img src="images/logodaWIP.png" alt="Logo WIP" onerror="this.src='images/Site2.jpg'">
                     </div>
