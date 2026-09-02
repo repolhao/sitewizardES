@@ -16,7 +16,7 @@
             --dark-blue-60: #6670a3;
             --dark-blue-20: #cccfe0;
 
-            /* Vermelho Corporativo (Menos estridente) */
+            /* Vermelho Corporativo */
             --brand-red: #d30d2b;
             --brand-red-hover: #b00720;
 
@@ -70,7 +70,7 @@
             margin: 0 auto;
         }
 
-        /* BLOCO DO HERO: nav flutuante + card de imagem */
+        /* BLOCO DO HERO */
         .hero-shell {
             position: relative;
             padding-top: 30px;
@@ -79,35 +79,35 @@
         .floating-nav {
             background: #ffffff;
             border-radius: 100px;
-            padding: 16px 36px;
+            padding: 14px 28px;
             display: flex;
-            justify-content: center; /* Centraliza a logo na horizontal */
+            justify-content: center;
             align-items: center;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 5;
-            margin-bottom: -42px;
-            max-width: fit-content; /* Ajusta o fundo da nav para o tamanho da logo */
-            margin-left: auto;     /* Centraliza o bloco na página */
-            margin-right: auto;    /* Centraliza o bloco na página */
+            margin-bottom: -32px;
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .floating-logo {
-            height: 54px;
+            height: 48px;
             width: auto;
             display: block;
         }
 
         .hero-card {
             position: relative;
-            border-radius: 32px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 30px 55px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
         }
 
         .hero-card img {
             width: 100%;
-            height: 520px;
+            height: 480px;
             object-fit: cover;
             display: block;
         }
@@ -117,24 +117,24 @@
             left: 0;
             bottom: 0;
             width: 100%;
-            padding: 50px;
-            background: linear-gradient(0deg, rgba(2, 17, 103, 0.88) 0%, rgba(2, 17, 103, 0.35) 55%, transparent 100%);
+            padding: 40px;
+            background: linear-gradient(0deg, rgba(2, 17, 103, 0.92) 0%, rgba(2, 17, 103, 0.4) 65%, transparent 100%);
         }
 
         .hero-overlay h1 {
             font-family: var(--font-display);
             font-style: italic;
             font-weight: 800;
-            font-size: 44px;
-            line-height: 0.98;
+            font-size: 40px;
+            line-height: 1.05;
             color: #ffffff;
             max-width: 640px;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
 
         .hero-overlay p {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             color: rgba(255, 255, 255, 0.92);
             max-width: 520px;
@@ -144,18 +144,18 @@
         .container {
             max-width: 1200px;
             width: 92%;
-            margin: 90px auto 40px auto;
+            margin: 70px auto 40px auto;
             flex: 1;
         }
 
         .cards-grid {
             display: grid;
             grid-template-columns: 1.3fr 0.7fr;
-            gap: 32px;
+            gap: 28px;
             align-items: center;
         }
 
-        /* CARD WIP (FUNDO NORMAL E DISCRETO) */
+        /* CARD WIP (DISCRETO) */
         .action-card {
             background: #ffffff;
             border-radius: 20px;
@@ -235,7 +235,7 @@
         .select-card {
             background: #ffffff;
             border-radius: 24px;
-            padding: 42px 36px;
+            padding: 36px 30px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             border-top: 6px solid var(--brand-red);
             display: flex;
@@ -244,31 +244,31 @@
         }
 
         .select-label {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             color: var(--dark-blue-100);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .select-label img {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
         }
 
         .card-description {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--dark-blue-60);
-            margin-bottom: 28px;
+            margin-bottom: 22px;
             line-height: 1.5;
         }
 
         .custom-select {
             width: 100%;
-            padding: 18px 20px;
-            font-size: 15px;
+            padding: 16px 18px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--dark-blue-100);
             border: 2px solid var(--dark-blue-20);
@@ -277,6 +277,12 @@
             cursor: pointer;
             outline: none;
             transition: all 0.2s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%021167' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px;
         }
 
         .custom-select:focus, .custom-select:hover {
@@ -286,112 +292,108 @@
 
         footer {
             text-align: center;
-            padding: 25px 20px;
+            padding: 20px 16px;
             font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
             font-weight: 600;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
-            margin-top: 40px;
+            margin-top: 30px;
             background: rgba(0, 0, 0, 0.3);
         }
 
+        /* RESPONSIVIDADE PARA TABLETS E CELULARES */
         @media (max-width: 992px) {
             .cards-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .hero-card img {
+                height: 380px;
             }
 
             .hero-overlay h1 {
                 font-size: 32px;
             }
-
-            .hero-card img {
-                height: 420px;
-            }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
+            .hero-shell {
+                padding-top: 15px;
+            }
+
             .floating-nav {
-                border-radius: 24px;
-                margin-bottom: -30px;
-                padding: 12px 24px;
+                border-radius: 50px;
+                padding: 10px 20px;
+                margin-bottom: -24px;
             }
 
             .floating-logo {
-                height: 42px;
+                height: 32px;
             }
 
-            .hero-card img {
-                height: 360px;
-            }
-
-            .hero-overlay {
-                padding: 28px;
-            }
-
-            .hero-overlay h1 {
-                font-size: 26px;
-            }
-
-            .container {
-                margin-top: 70px;
-            }
-
-            .wrap {
-                width: 94%;
-            }
-
-            .cards-grid {
-                gap: 20px;
-            }
-
-            .action-card, .select-card {
-                padding: 28px 22px;
+            .hero-card {
                 border-radius: 20px;
             }
 
-            .select-label {
-                font-size: 20px;
-            }
-
-            .wip-logo-container img {
-                max-width: 140px;
-            }
-
-            .custom-select {
-                font-size: 14px;
-                padding: 14px 16px;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .hero-overlay h1 {
-                font-size: 22px;
-            }
-
-            .hero-overlay p {
-                font-size: 14px;
-            }
-
             .hero-card img {
-                height: 300px;
+                height: 220px;
             }
 
             .hero-overlay {
-                padding: 22px;
+                padding: 20px 16px;
             }
 
-            .floating-nav {
-                padding: 10px 18px;
-                margin-bottom: -26px;
+            .hero-overlay h1 {
+                font-size: 22px;
+                margin-bottom: 4px;
             }
 
-            .floating-logo {
-                height: 34px;
+            .hero-overlay p {
+                font-size: 12px;
+                line-height: 1.3;
+            }
+
+            .container {
+                margin-top: 30px;
+                width: 94%;
+            }
+
+            .select-card {
+                padding: 22px 18px;
+                border-radius: 18px;
+            }
+
+            .select-label {
+                font-size: 18px;
+            }
+
+            .card-description {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+
+            .custom-select {
+                font-size: 13px;
+                padding: 12px 14px;
+            }
+
+            .action-card {
+                padding: 18px 16px;
+                border-radius: 18px;
+            }
+
+            .wip-text-title {
+                font-size: 12px;
+            }
+
+            .wip-logo-container img {
+                max-width: 110px;
             }
 
             .btn-secondary {
-                font-size: 13px;
-                padding: 12px 14px;
+                padding: 10px 14px;
+                font-size: 12px;
             }
         }
     </style>
@@ -416,8 +418,8 @@
         <div class="hero-card">
             <img src="images/pexels-gabby-k-6238046.jpg" alt="Wizpen Wizard">
             <div class="hero-overlay">
-                <h1>Encontre sua unidade na<br>Wizard Espírito Santo</h1>
-                <p>Conheça as unidades oficiais ou acesse a aquisição de material didático.</p>
+                <h1>Encontre sua unidade<br>Wizard Espírito Santo</h1>
+                <p>Selecione sua unidade oficial ou acesse a aquisição de material didático.</p>
             </div>
         </div>
     </div>
@@ -425,7 +427,7 @@
     <div class="container">
         <div class="cards-grid">
 
-            <!-- CARD UNIDADES (DESTAQUE CENTRAL E FONTE MAIOR) -->
+            <!-- CARD UNIDADES (DESTAQUE CENTRAL) -->
             <div class="select-card">
                 <div>
                     <div class="select-label">
@@ -451,10 +453,10 @@
                 </select>
             </div>
 
-            <!-- CARD WIP (AO LADO E DISCRETO COM TEXTO SOBRE A LOGO) -->
+            <!-- CARD WIP (AO LADO E DISCRETO) -->
             <div class="action-card">
                 <div>
-                    <p class="wip-text-title">Compre seu Material Didático da WIP aqui</p>
+                    <p class="wip-text-title">compre seu material didatico do programa wip aqui</p>
                     <div class="wip-logo-container">
                         <img src="images/logodaWIP.png" alt="Logo WIP" onerror="this.src='images/Site2.jpg'">
                     </div>
