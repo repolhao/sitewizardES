@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Loja Oficial WIP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo">
+  <img src="img/logodaWIP.png" alt="Wizard International Program" style="height: 85px; width: auto;" />
+    </a>
+    <span class="track-pill">Ambiente Seguro</span>
+  </div>
+</header>
+
+<main class="wrap checkout">
+  <div class="checkout-grid">
+    <div>
+      <h2>Finalizar Pedido</h2>
+
+      <div class="pay-tabs">
+        <button class="pay-tab active" onclick="switchTab('cartao')">Cartão de Crédito</button>
+        <button class="pay-tab" onclick="switchTab('pix')">Pix (à vista)</button>
+      </div>
+
+      <!-- ABA CARTÃO DE CRÉDITO -->
+      <div id="panel-cartao" class="pay-panel active">
+        <form id="card-form" class="card-form" onsubmit="validarEProcessar(event)" novalidate>
+          
+          <div class="form-section-title">1. Dados do Responsável / Aluno</div>
+          <div>
+            <label for="cust-name">Nome Completo</label>
+            <input type="text" id="cust-name" placeholder="Ex: Maria Silva" required>
+            <span class="error-msg">Preenchimento obrigatório</span>
+          </div>
+          <div class="row-2">
+            <div>
+              <label for="cust-email">E-mail</label>
+              <input type="email" id="cust-email" placeholder="seu@email.com" required>
+              <span class="error-msg">Informe um e-mail válido</span>
+            </div>
+            <div>
+              <label for="cust-phone">WhatsApp</label>
+              <input type="text" id="cust-phone" placeholder="(00) 00000-0000" maxlength="15" required>
+              <span class="error-msg">Obrigatório</span>
+            </div>
+          </div>
+
+          <div class="form-section-title">2. Dados do Cartão</div>
+          <div>
+            <label for="card-number">Número do Cartão</label>
+            <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19" required>
+            <span class="error-msg">Preenchimento obrigatório</span>
+          </div>
+          <div>
+            <label for="card-name">Nome no Cartão</label>
+            <input type="text" id="card-name" placeholder="Como impresso no cartão" required>
+            <span class="error-msg">Preenchimento obrigatório</span>
+          </div>
+          <div class="row-2">
+            <div>
+              <label for="card-expiry">Validade</label>
+              <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5" required>
+              <span class="error-msg">Obrigatório</span>
+            </div>
+            <div>
+              <label for="card-cvv">CVV</label>
+              <input type="text" id="card-cvv" placeholder="123" maxlength="4" required>
+              <span class="error-msg">Obrigatório</span>
+            </div>
+          </div>
+          <div>
+            <label for="card-installments">Parcelamento</label>
+            <select id="card-installments" required>
+              <option value="">Selecione as parcelas...</option>
+              <option value="1">1x sem juros</option>
+              <option value="2">2x sem juros</option>
+              <option value="3">3x sem juros</option>
+              <option value="6">6x sem juros</option>
+              <option value="12">12x sem juros</option>
+            </select>
+            <span class="error-msg">Selecione uma opção</span>
+          </div>
+
+          <div class="terms-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terms-card" required>
+              <span>Concordo com os termos de retirada do material na unidade escolar.</span>
+            </label>
+            <span class="error-msg">Você precisa aceitar os termos.</span>
+          </div>
+
+          <button type="submit" class="btn-pay">Finalizar Pagamento</button>
+
+          <div class="payment-badges">
+            <div class="card-flags">
+              <span class="card-flag-item">VISA</span>
+              <span class="card-flag-item">MASTERCARD</span>
+              <span class="card-flag-item">ELO</span>
+              <span class="card-flag-item">AMEX</span>
+            </div>
+            <div class="ssl-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Transação criptografada (SSL 256-bit)
+            </div>
+          </div>
+        </form>
+      </div>
+
+ <!-- ABA PIX -->
+<div id="panel-pix" class="pay-panel">
+  <div class="pix-box" style="text-align: center;">
+    <div class="pix-timer-box" style="margin-bottom: 15px;">
+      Este QR Code expira em: <span id="pix-timer">15:00</span>
+    </div>
+
+    <!-- Imagem Dinâmica do QR Code -->
+    <div style="margin: 15px 0;">
+      <img id="qrCodeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00020126360014BR.GOV.BCB.PIX0114%2B55119999999995204000053039865405350.005802BR5925WIP%20LOJA%20OFICIAL6009SAO%20PAULO62070503***6304E2CA" alt="QR Code Pix" style="width: 180px; height: 180px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px;">
+    </div>
+
+    <p class="pix-discount">5% de desconto no Pix</p>
+    
+    <div class="pix-code" style="margin-bottom: 15px;">
+      <input type="text" id="pix-code-input" value="00020126360014BR.GOV.BCB.PIX0114+55119999999995204000053039865405350.005802BR5925WIP LOJA OFICIAL6009SAO PAULO62070503***6304E2CA" readonly>
+      <button type="button" id="btn-copiar" class="btn-copy" onclick="copiarPix()">Copiar</button>
+    </div>
+
+    <p style="font-size: 13px; color: var(--gray); margin-bottom: 20px;">
+      Após realizar o pagamento no app do seu banco, o sistema confirmará automaticamente.
+    </p>
+
+    <button type="button" class="btn-pay" onclick="simularAprovacaoPix()">Já paguei / Simular Aprovação</button>
+  </div>
+</div>
+
+    <!-- RESUMO DO PEDIDO -->
+
+<div class="order-summary">
+  <!-- Adicione margin-top: 0 para alinhar perfeitamente no topo da caixa -->
+  <h3 style="margin-top: 0; padding-top: 0;">Resumo do Pedido</h3>
+  <div class="order-line">
+    <span>Produto</span>
+    <strong id="summary-product">Material Didático</strong>
+  </div>
+      <div class="order-line">
+        <span>Segmento</span>
+        <span id="summary-track">Geral</span>
+      </div>
+      <div class="order-total">
+        <span>Total</span>
+        <span id="summary-price">R$ 0,00</span>
+      </div>
+      <div class="integration-note">
+        Retirada presencial na recepção da escola após a confirmação do pagamento.
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Overlay de Processamento -->
+<div id="processing-overlay" class="processing-overlay">
+  <div class="processing-card">
+    <div class="spinner"></div>
+    <h3>Processando Pagamento...</h3>
+    <p>Por favor, <strong>não feche nem atualize esta página</strong>. Estamos confirmando sua transação.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>Wizard International Program — Wizard by Pearson</span>
+    <span>Loja Oficial WIP</span>
+  </div>
+</footer>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const origemPage = urlParams.get('origem') || 'index.html';
+
+  if(urlParams.get('produto')) document.getElementById('summary-product').innerText = urlParams.get('produto');
+  if(urlParams.get('faixa')) document.getElementById('summary-track').innerText = urlParams.get('faixa');
+  if(urlParams.get('preco')) document.getElementById('summary-price').innerText = 'R$ ' + urlParams.get('preco');
+
+  /* MÁSCARAS AUTOMÁTICAS DE ENTRADA */
+  document.getElementById('card-number').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g, '');
+    v = v.replace(/(\d{4})/g, '$1 ').trim();
+    e.target.value = v;
+  });
+
+  document.getElementById('card-expiry').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2,4);
+    e.target.value = v;
+  });
+
+  document.getElementById('card-cvv').addEventListener('input', function(e) {
+    e.target.value = e.target.value.replace(/\D/g, '');
+  });
+
+  document.getElementById('cust-phone').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g, '');
+    v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
+    v = v.replace(/(\d{5})(\d)/, '$1-$2');
+    e.target.value = v;
+  });
+
+  /* VALIDAÇÃO EM TEMPO REAL */
+  const inputsToValidate = document.querySelectorAll('#card-form input, #card-form select');
+  inputsToValidate.forEach(input => {
+    input.addEventListener('input', () => validarCampo(input));
+    input.addEventListener('change', () => validarCampo(input));
+  });
+
+  function validarCampo(input) {
+    if (input.type === 'checkbox') {
+      if (input.checked) {
+        input.classList.remove('input-error');
+        return true;
+      } else {
+        input.classList.add('input-error');
+        return false;
+      }
+    }
+
+    if (input.value.trim() !== '') {
+      input.classList.remove('input-success');
+      return true;
+    } else {
+      input.classList.remove('input-success');
+      input.classList.add('input-error');
+      return false;
+    }
+  }
+
+  /* PROCESSAMENTO DO CARTÃO */
+  function validarEProcessar(event) {
+    event.preventDefault();
+    let formValido = true;
+    const form = document.getElementById('card-form');
+
+    inputsToValidate.forEach(input => {
+      const eValido = validarCampo(input);
+      if (!eValido) formValido = false;
+    });
+
+    if (!formValido) {
+      form.classList.remove('shake');
+      void form.offsetWidth;
+      form.classList.add('shake');
+      return;
+    }
+
+    salvarPedidoEFinalizar('Cartão de Crédito');
+  }
+
+  /* ABAS DE PAGAMENTO */
+  function switchTab(tab) {
+    document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
+    
+    if(tab === 'cartao') {
+      document.querySelectorAll('.pay-tab')[0].classList.add('active');
+      document.getElementById('panel-cartao').classList.add('active');
+    } else {
+      document.querySelectorAll('.pay-tab')[1].classList.add('active');
+      document.getElementById('panel-pix').classList.add('active');
+    }
+  }
+
+  /* COPIAR CÓDIGO PIX */
+  function copiarPix() {
+    const campoPix = document.getElementById('pix-code-input');
+    navigator.clipboard.writeText(campoPix.value).then(() => {
+      const btn = document.getElementById('btn-copiar');
+      btn.innerText = 'Copiado!';
+      btn.style.background = '#16a34a';
+      btn.style.color = '#ffffff';
+
+      setTimeout(() => {
+        btn.innerText = 'Copiar';
+        btn.style.background = '#ffffff';
+        btn.style.color = 'var(--navy)';
+      }, 2000);
+    });
+  }
+
+  /* SIMULAR APROVAÇÃO DO PIX */
+  function simularAprovacaoPix() {
+    salvarPedidoEFinalizar('PIX');
+  }
+
+  /* GRAVA DADOS NA SECRETARIA E REDIRECIONA */
+  function salvarPedidoEFinalizar(metodoPagamento) {
+    document.getElementById('processing-overlay').classList.add('active');
+
+    const alunoData = JSON.parse(localStorage.getItem('aluno_pendente') || '{}');
+    const pedidosExistentes = JSON.parse(localStorage.getItem('pedidos_secretaria') || '[]');
+
+const novoPedido = {
+  id: 'PED-' + Math.floor(1000 + Math.random() * 9000),
+  aluno: alunoData.nome || document.getElementById('cust-name').value || 'Aluno Não Informado',
+  cpf: alunoData.cpf || 'Não informado',
+  matricula: alunoData.matricula || 'N/A',
+  unidade: alunoData.unidade || 'Unidade Principal', // Fallback atualizado
+  responsavel: alunoData.responsavel || document.getElementById('cust-name').value,
+  whatsapp: alunoData.whatsapp || document.getElementById('cust-phone').value,
+  email: alunoData.email || document.getElementById('cust-email').value,
+  data: new Date().toLocaleDateString('pt-BR'),
+  pagamento: `✅ Pago (${metodoPagamento})`,
+  statusSaf: '🟡 Solicitar'
+};
+
+    pedidosExistentes.unshift(novoPedido);
+    localStorage.setItem('pedidos_secretaria', JSON.stringify(pedidosExistentes));
+    localStorage.removeItem('aluno_pendente');
+
+    setTimeout(() => {
+      redirecionarParaSucesso();
+    }, 2000);
+  }
+
+  function redirecionarParaSucesso() {
+    const produto = document.getElementById('summary-product').innerText;
+    const preco = document.getElementById('summary-price').innerText;
+    window.location.href = `sucesso.html?produto=${encodeURIComponent(produto)}&preco=${encodeURIComponent(preco)}&origem=${encodeURIComponent(origemPage)}`;
+  }
+
+  /* CONTADOR REGRESSIVO PIX (15 MINUTOS) */
+  let tempoRestante = 15 * 60;
+  const timerElement = document.getElementById('pix-timer');
+
+  setInterval(() => {
+    if (tempoRestante <= 0) {
+      timerElement.innerText = "Expirado";
+      return;
+    }
+    tempoRestante--;
+    const minutos = Math.floor(tempoRestante / 60);
+    const segundos = tempoRestante % 60;
+    timerElement.innerText = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+  }, 1000);
+</script>
+
+</body>
+</html>

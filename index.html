@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard Espírito Santo | Unidades Oficiais</title>
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Barlow+Condensed:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark-blue-100: #021167;
+            --dark-blue-80: #364085;
+            --dark-blue-60: #6670a3;
+            --dark-blue-20: #cccfe0;
+
+            /* Vermelho Corporativo (Menos estridente) */
+            --brand-red: #d30d2b;
+            --brand-red-hover: #b00720;
+
+            --off-white: #f8f9fa;
+            --font-sans: "Work Sans", sans-serif;
+            --font-display: "Barlow Condensed", sans-serif;
+            --wizard-card-bg: #FFFFFF;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0 solid;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: var(--dark-blue-100);
+            font-family: var(--font-sans);
+            color: var(--dark-blue-100);
+            position: relative;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* FUNDO COM CURVAS NOS CANTOS */
+        .bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-shapes svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            width: 92%;
+            margin: 0 auto;
+        }
+
+        /* BLOCO DO HERO: nav flutuante + card de imagem */
+        .hero-shell {
+            position: relative;
+            padding-top: 30px;
+        }
+
+.floating-nav {
+            background: #ffffff;
+            border-radius: 100px;
+            padding: 16px 36px;
+            display: flex;
+            justify-content: center; /* Centraliza a logo na horizontal */
+            align-items: center;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 5;
+            margin-bottom: -42px;
+            max-width: fit-content; /* Ajusta o fundo da nav para o tamanho da logo */
+            margin-left: auto;     /* Centraliza o bloco na página */
+            margin-right: auto;    /* Centraliza o bloco na página */
+        }
+
+        .floating-logo {
+            height: 54px;
+            width: auto;
+            display: block;
+        }
+
+        .hero-card {
+            position: relative;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 30px 55px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 50px;
+            background: linear-gradient(0deg, rgba(2, 17, 103, 0.88) 0%, rgba(2, 17, 103, 0.35) 55%, transparent 100%);
+        }
+
+        .hero-overlay h1 {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-weight: 800;
+            font-size: 44px;
+            line-height: 0.98;
+            color: #ffffff;
+            max-width: 640px;
+            margin-bottom: 14px;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-overlay p {
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.92);
+            max-width: 520px;
+        }
+
+        /* CONTAINER DE CONTEÚDO */
+        .container {
+            max-width: 1200px;
+            width: 92%;
+            margin: 90px auto 40px auto;
+            flex: 1;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        /* CARD WIP */
+        .action-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 36px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            border-top: 5px solid var(--brand-red);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: rgba(2, 17, 103, 0.08);
+            color: var(--dark-blue-100);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 5px 14px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .wip-logo-container {
+            margin: 10px 0 24px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wip-logo-container img {
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* BOTÃO PROFISSIONAL E MODERNO */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background-color: var(--brand-red);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 15px;
+            text-align: center;
+            padding: 16px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 14px rgba(211, 13, 43, 0.25);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary .arrow {
+            font-size: 18px;
+            transition: transform 0.25s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--brand-red-hover);
+            box-shadow: 0 8px 20px rgba(211, 13, 43, 0.35);
+        }
+
+        .btn-primary:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* CARD UNIDADES */
+        .select-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 36px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            border-top: 5px solid var(--dark-blue-100);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .select-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-blue-100);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .select-label img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: var(--dark-blue-60);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .custom-select {
+            width: 100%;
+            padding: 16px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-blue-100);
+            border: 1.5 solid var(--dark-blue-20);
+            border-radius: 10px;
+            background-color: var(--off-white);
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .custom-select:focus, .custom-select:hover {
+            border-color: var(--dark-blue-100);
+            background-color: #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 992px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-overlay h1 {
+                font-size: 32px;
+            }
+
+            .hero-card img {
+                height: 420px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .floating-nav {
+                border-radius: 24px;
+                margin-bottom: -30px;
+                padding: 12px 24px;
+            }
+
+            .floating-logo {
+                height: 42px;
+            }
+
+            .hero-card img {
+                height: 360px;
+            }
+
+            .hero-overlay {
+                padding: 28px;
+            }
+
+            .hero-overlay h1 {
+                font-size: 26px;
+            }
+
+            .container {
+                margin-top: 70px;
+            }
+
+            .wrap {
+                width: 94%;
+            }
+
+            .cards-grid {
+                gap: 20px;
+            }
+
+            .action-card, .select-card {
+                padding: 28px 22px;
+                border-radius: 20px;
+            }
+
+            .wip-logo-container img {
+                max-width: 180px;
+            }
+
+            .custom-select {
+                font-size: 13px;
+                padding: 14px 16px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero-overlay h1 {
+                font-size: 22px;
+            }
+
+            .hero-overlay p {
+                font-size: 14px;
+            }
+
+            .hero-card img {
+                height: 300px;
+            }
+
+            .hero-overlay {
+                padding: 22px;
+            }
+
+            .floating-nav {
+                padding: 10px 18px;
+                margin-bottom: -26px;
+            }
+
+            .floating-logo {
+                height: 34px;
+            }
+
+            .btn-primary {
+                font-size: 14px;
+                padding: 14px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FUNDO -->
+    <div class="bg-shapes">
+        <svg viewBox="0 0 1898 654" preserveAspectRatio="none">
+            <path d="M 0.0 502.5 L 0.0 219.5 L 26.0 223.5 L 70.0 223.5 L 120.0 218.5 L 224.0 198.5 L 325.0 171.5 L 332.0 171.5 L 335.5 175.0 L 330.0 183.5 L 277.0 210.5 L 202.0 259.5 L 121.0 328.5 L 86.5 365.0 L 48.5 414.0 L 21.5 457.0 L 0.0 502.5 Z" fill="#e70022"/>
+            <path d="M 662.0 653.5 L 451.5 653.0 L 515.0 609.5 L 594.0 564.5 L 655.0 534.5 L 760.0 490.5 L 854.0 457.5 L 952.0 428.5 L 1102.0 392.5 L 1109.5 396.0 L 1110.5 400.0 L 1104.0 405.5 L 979.0 457.5 L 858.0 520.5 L 758.0 582.5 L 662.0 653.5 Z" fill="#e70022"/>
+            <path d="M 1896.0 653.5 L 1034.5 653.0 L 1138.0 579.5 L 1257.0 502.5 L 1388.0 425.5 L 1495.0 367.5 L 1613.0 309.5 L 1712.0 265.5 L 1806.0 228.5 L 1896.0 199.5 L 1896.0 653.5 Z" fill="#e70022"/>
+        </svg>
+    </div>
+
+    <!-- HERO FLUTUANTE -->
+    <div class="hero-shell wrap">
+        <div class="floating-nav">
+            <img class="floating-logo" src="images/index_r1_c2.png" alt="Wizard by Pearson" onerror="this.src='images/Site2.jpg'">
+        </div>
+
+        <div class="hero-card">
+            <img src="images/pexels-gabby-k-6238046.jpg" alt="Wizpen Wizard">
+            <div class="hero-overlay">
+                <h1>Encontre sua unidade<br>Wizard Espírito Santo</h1>
+                <p>Selecione sua unidade oficial ou acesse a aquisição de material didático.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cards-grid">
+
+            <div class="action-card">
+                <div>
+                    <span class="card-tag">Material Didático</span>
+                    <div class="wip-logo-container">
+                        <img src="images/logodaWIP.png" alt="Logo WIP" onerror="this.src='images/Site2.jpg'">
+                    </div>
+                </div>
+
+                <a href="compramatricula.html" class="btn-primary">
+                    <span>Comprar Material Didático WIP</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+            </div>
+
+            <div class="select-card">
+                <div>
+                    <div class="select-label">
+                        <img src="images/pointer.png" alt="Localização" onerror="this.style.display='none'">
+                        <span>Acesse o Site da Sua Unidade</span>
+                    </div>
+                    <p class="card-description">Escolha a unidade mais próxima para consultar horários, matrículas e contatos diretos.</p>
+                </div>
+
+                <select class="custom-select" onchange="if (this.value) window.open(this.value, '_blank')">
+                    <option value="" disabled selected>Clique para selecionar sua unidade...</option>
+                    <optgroup label="Vitória">
+                        <option value="http://www.wizard.com.br/escolas/matadapraia/">Wizard Mata da Praia</option>
+                        <option value="http://www.wizard.com.br/escolas/vitoriacamburi/">Wizard Jardim Camburi</option>
+                        <option value="http://www.wizard.com.br/escolas/vitoriabentoferreira/">Wizard Bento Ferreira</option>
+                    </optgroup>
+                    <optgroup label="Serra">
+                        <option value="http://www.wizard.com.br/escolas/serralaranjeiras/">Wizard Laranjeiras</option>
+                        <option value="http://www.wizard.com.br/escolas/serrajacaraipe/">Wizard Jacaraípe</option>
+                    </optgroup>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        Copyright &copy; 2026 Wizard Espírito Santo — Todos os direitos reservados. by Jon Bitte
+    </footer>
+
+</body>
+</html>
