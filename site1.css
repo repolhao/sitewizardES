@@ -1,16 +1,314 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Wizard Espírito Santo: inglês para transformar o seu futuro.">
-  <title>Wizard Espírito Santo | Inglês para transformar o seu futuro</title>
-  <link rel="shortcut icon" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-  <style>
-:root {
+        :root {
+            --dark-blue-100: #021167;
+            --dark-blue-80: #364085;
+            --dark-blue-60: #6670a3;
+            --dark-blue-20: #cccfe0;
+
+            /* Vermelho Corporativo */
+            --brand-red: #d30d2b;
+            --brand-red-hover: #b00720;
+
+            --off-white: #f8f9fa;
+            --font-sans: "Work Sans", sans-serif;
+            --font-display: "Barlow Condensed", sans-serif;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0 solid;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: var(--dark-blue-100);
+            font-family: var(--font-sans);
+            color: var(--dark-blue-100);
+            position: relative;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        /* FUNDO COM CURVAS NOS CANTOS */
+        .bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-shapes svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            width: 92%;
+            margin: 0 auto;
+        }
+
+        /* TOPO E LOGO FLUTUANTE */
+        .top-nav {
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .floating-nav {
+            background: #ffffff;
+            border-radius: 100px;
+            padding: 10px 28px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+        }
+
+        .floating-logo {
+            height: 65px;
+            width: auto;
+            display: block;
+        }
+
+        /* CONTAINER PRINCIPAL GRID COM FOTO EXTENDIDA NA VERTICAL */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 580px 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        /* CARD DA FOTO AUMENTADO BEM NA VERTICAL */
+        .vertical-photo-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+            height: 640px; /* Aumentado de 420px para 520px na vertical */
+            width: 100%;
+            border: 3px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .vertical-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center; /* Centralizado perfeitamente no eixo Y */
+            display: block;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 28px 20px;
+            background: linear-gradient(0deg, rgba(2, 17, 103, 0.95) 0%, rgba(2, 17, 103, 0.3) 75%, transparent 100%);
+            text-align: center;
+        }
+
+        .photo-overlay h2 {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-weight: 800;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .photo-overlay p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* COLUNA DO CARD PRINCIPAL */
+        .content-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* CARD DE SELEÇÃO DE UNIDADES - DESTAQUE ABSOLUTO */
+        .select-card-main {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 48px 36px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+            border-top: 8px solid var(--brand-red);
+            text-align: center;
+        }
+
+        .select-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--dark-blue-100);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .select-title img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .select-subtitle {
+            font-size: 15px;
+            color: var(--dark-blue-60);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .custom-select {
+            width: 100%;
+            padding: 18px 22px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-blue-100);
+            border: 2px solid var(--dark-blue-20);
+            border-radius: 14px;
+            background-color: var(--off-white);
+            cursor: pointer;
+            outline: none;
+            transition: all 0.25s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%021167' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 22px;
+        }
+
+        .custom-select:focus, .custom-select:hover {
+            border-color: var(--brand-red);
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(211, 13, 43, 0.15);
+        }
+
+        /* BARRA COMPRA WIP - MANTIDA ULTRA DISCRETA */
+        .wip-discreet-bar {
+            margin-top: 24px;
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 18px;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .wip-discreet-bar:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .wip-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+
+        .wip-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s ease;
+        }
+
+        .wip-link:hover {
+            opacity: 0.8;
+        }
+
+        .wip-mini-logo {
+            height: 14px;
+            width: auto;
+            vertical-align: middle;
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
+        @media (max-width: 960px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .vertical-photo-card {
+                height: 280px;
+            }
+
+            .select-card-main {
+                padding: 28px 20px;
+                border-radius: 20px;
+            }
+
+            .select-title {
+                font-size: 22px;
+            }
+
+            .select-subtitle {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .custom-select {
+                font-size: 14px;
+                padding: 13px 14px;
+            }
+
+            .wip-discreet-bar {
+                flex-direction: column;
+                gap: 6px;
+                border-radius: 14px;
+                padding: 10px;
+            }
+        }
+        :root {
   --navy: #03145a;
   --navy-deep: #020d3d;
   --navy-soft: #0b256f;
@@ -33,7 +331,7 @@ img { display: block; max-width: 100%; }
 
 .site-header { position: sticky; top: 0; z-index: 20; color: var(--white); background: var(--navy-deep); box-shadow: 0 4px 18px rgba(0,0,0,.2); }
 .nav-inner { min-height: 84px; display: flex; align-items: center; gap: 25px; }
-.brand img { width: 166px; height: auto; object-fit: contain; }
+.brand img { width: 166px; height: auto; object-fit: contain; filter: brightness(0) invert(1); }
 .state-name { padding-left: 18px; border-left: 1px solid rgba(255,255,255,.25); color: #f7f8ff; font-size: 13px; font-weight: 600; white-space: nowrap; }
 .main-nav { display: flex; align-items: center; gap: 25px; margin-left: auto; font-size: 13px; white-space: nowrap; }
 .main-nav a { position: relative; padding: 31px 0 27px; opacity: .92; }
@@ -57,15 +355,13 @@ img { display: block; max-width: 100%; }
 .hero-visual { position: relative; min-height: 420px; overflow: hidden; }
 .hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: .95; }
 .hero-visual-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, var(--navy) 0%, transparent 26%), linear-gradient(0deg, rgba(0,0,0,.18), transparent 40%); }
-.hero-badge { position: absolute; right: 35px; bottom: 28px; display: flex; align-items: center; padding: 0; }
-.hero-badge img { width: 116px; height: 116px; border-radius: 50%; box-shadow: 0 8px 22px rgba(0,0,0,.3); }
+.hero-badge { position: absolute; right: 35px; bottom: 28px; display: flex; flex-direction: column; padding: 8px 14px; border-left: 3px solid var(--red); background: rgba(2,13,61,.8); font-family: var(--heading); text-transform: uppercase; }
 .hero-badge strong { font-size: 22px; line-height: 1; }.hero-badge span { font-size: 10px; letter-spacing: .12em; }
 
 .quick-actions { position: relative; display: grid; grid-template-columns: 1.2fr .95fr; gap: 18px; margin-top: -1px; padding-top: 30px; }
 .action-card { min-height: 270px; display: flex; gap: 22px; align-items: center; padding: 34px 38px; border-radius: 16px; box-shadow: 0 8px 20px rgba(3,20,90,.12); }
 .action-card-blue { color: var(--white); background: linear-gradient(135deg, #061b6c, #0a2c81); }.action-card-light { color: var(--ink); background: var(--white); border: 1px solid #dce1ea; }
 .action-icon { display: grid; min-width: 66px; height: 66px; place-items: center; border-radius: 50%; color: var(--navy); background: var(--white); font-size: 38px; }
-.action-icon svg { width: 31px; height: 31px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
 .action-card h2 { margin: 0; font-family: var(--heading); font-size: clamp(21px, 2.2vw, 29px); line-height: 1.17; }.action-card h2 strong { color: var(--red); }
 .action-card p { max-width: 370px; margin: 0 0 20px; color: inherit; opacity: .84; font-size: 14px; line-height: 1.5; }.action-card-light p { color: var(--muted); }
 .red-rule { width: 78px; height: 3px; margin: 17px 0 15px; background: var(--red); }.action-button { display: inline-flex; align-items: center; gap: 24px; padding: 12px 16px; border-radius: 6px; font-size: 14px; font-weight: 800; }.action-button span { display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; background: white; color: var(--red); font-size: 17px; }.action-button-red { color: white; background: var(--red); }.action-button-navy { color: white; background: var(--navy); }.wip-logo { width: 145px; max-height: 100px; object-fit: contain; }
@@ -75,128 +371,9 @@ img { display: block; max-width: 100%; }
 
 .benefits { color: white; background: var(--navy-deep); }.benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding: 27px 0; }.benefit { display: flex; gap: 15px; align-items: center; justify-content: center; padding: 0 20px; border-right: 1px solid rgba(255,255,255,.2); }.benefit:last-child { border: 0; }.benefit-icon { color: var(--red); font-size: 38px; line-height: 1; }.benefit p { margin: 0; color: rgba(255,255,255,.82); font-size: 12px; line-height: 1.4; }.benefit strong { color: white; }
 .courses-strip { padding: 42px 0; background: white; }.courses-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }.courses-inner .section-kicker { margin-bottom: 8px; }.courses-inner h2 { margin: 0; }.courses-inner > p { max-width: 370px; margin: 0; color: var(--muted); font-size: 14px; }
-.site-footer { color: rgba(255,255,255,.86); background: var(--navy-deep); }.footer-top { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 42px; padding: 42px 0 34px; }.footer-brand { display: flex; align-items: center; gap: 20px; }.footer-brand img { width: 165px; }.footer-brand span { padding-left: 20px; border-left: 1px solid rgba(255,255,255,.3); font-size: 13px; }.site-footer h3 { margin: 0 0 13px; color: white; font-size: 13px; }.footer-social div { display: flex; flex-wrap: wrap; gap: 15px; }.footer-social a, .footer-contact a { color: rgba(255,255,255,.78); font-size: 12px; }.footer-contact { display: flex; flex-direction: column; gap: 7px; }.footer-bottom { padding: 14px 0 20px; border-top: 1px solid rgba(255,255,255,.13); color: rgba(255,255,255,.55); font-size: 11px; text-align: center; }
+.site-footer { color: rgba(255,255,255,.86); background: var(--navy-deep); }.footer-top { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 42px; padding: 42px 0 34px; }.footer-brand { display: flex; align-items: center; gap: 20px; }.footer-brand img { width: 165px; filter: brightness(0) invert(1); }.footer-brand span { padding-left: 20px; border-left: 1px solid rgba(255,255,255,.3); font-size: 13px; }.site-footer h3 { margin: 0 0 13px; color: white; font-size: 13px; }.footer-social div { display: flex; flex-wrap: wrap; gap: 15px; }.footer-social a, .footer-contact a { color: rgba(255,255,255,.78); font-size: 12px; }.footer-contact { display: flex; flex-direction: column; gap: 7px; }.footer-bottom { padding: 14px 0 20px; border-top: 1px solid rgba(255,255,255,.13); color: rgba(255,255,255,.55); font-size: 11px; text-align: center; }
 
 @media (max-width: 1050px) { .main-nav { gap: 14px; }.nav-inner { gap: 15px; }.units-grid { grid-template-columns: repeat(3, 1fr); }.quick-actions { grid-template-columns: 1fr; } }
 @media (max-width: 760px) { .container { width: min(100% - 34px, 600px); }.nav-inner { min-height: 70px; }.brand img { width: 132px; }.state-name { display: none; }.menu-toggle { display: block; margin-left: auto; order: 3; }.header-cta { display: none; }.main-nav { position: absolute; top: 70px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 10px 18px 15px; background: var(--navy-deep); }.menu-open .main-nav { display: flex; }.main-nav a { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.1); }.main-nav a::after { bottom: 0; }.hero-inner { grid-template-columns: 1fr; }.hero-copy { padding: 47px 8px 35px; }.hero-visual { min-height: 260px; }.hero-visual-overlay { background: linear-gradient(0deg, rgba(3,20,90,.75), transparent 50%); }.hero h1 { font-size: 49px; }.action-card { min-height: unset; padding: 27px 23px; }.action-icon { min-width: 52px; width: 52px; height: 52px; font-size: 28px; }.wip-logo { width: 105px; }.benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 23px 0; }.benefit:nth-child(2) { border: 0; }.benefit { justify-content: flex-start; padding: 0 10px; }.courses-inner { align-items: flex-start; flex-direction: column; gap: 18px; }.footer-top { grid-template-columns: 1fr; gap: 28px; padding: 32px 0; }.footer-brand { flex-wrap: wrap; } }
 @media (max-width: 470px) { .units-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }.unit-card > img { height: 115px; }.unit-card-content { min-height: 140px; padding: 11px 10px; }.unit-card h3 { font-size: 14px; }.unit-card p { font-size: 10px; }.unit-arrow { right: 9px; bottom: 9px; }.action-card { gap: 13px; padding: 24px 17px; }.action-card h2 { font-size: 20px; }.action-card p { font-size: 12px; }.wip-logo { width: 78px; }.benefit { gap: 9px; padding: 0 4px; }.benefit-icon { font-size: 28px; }.benefit p { font-size: 10px; } }
 
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav-inner">
-      <a class="brand" href="#inicio" aria-label="Wizard Espírito Santo - início">
-        <img src="img/wizard-logo.png" alt="Wizard by Pearson">
-      </a>
-      <span class="state-name">ESPÍRITO SANTO</span>
-      <button class="menu-toggle" type="button" aria-label="Abrir menu" onclick="document.body.classList.toggle('menu-open')">☰</button>
-      <nav class="main-nav" aria-label="Navegação principal">
-        <a class="active" href="#inicio">Início</a>
-        <a href="#unidades">Nossas Unidades</a>
-        <a href="#cursos">Cursos</a>
-        <a href="#diferenciais">Diferenciais</a>
-        <a href="compramatricula.html">WIP</a>
-        <a href="#contato">Contato</a>
-      </nav>
-      <a class="header-cta" href="https://wa.me/5527999797333" target="_blank" rel="noopener">Fale conosco <span>◔</span></a>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="inicio">
-      <div class="hero-texture"></div>
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">Wizard by Pearson</p>
-          <h1>Inglês para<br><em>transformar</em><br>o seu futuro!</h1>
-          <p class="hero-lead">A Wizard by Pearson é referência mundial em ensino de idiomas.<br>No Espírito Santo, temos unidades prontas para te receber!</p>
-          <a class="primary-button" href="https://wa.me/5527999797333" target="_blank" rel="noopener">Fale com uma unidade <span>◔</span></a>
-        </div>
-        <div class="hero-visual">
-          <img src="images/study.png" alt="Adolescentes estudando em sala de aula">
-          <div class="hero-visual-overlay"></div>
-            <div class="hero-badge"><img src="images/logowizard-ES.png" alt="Wizard Espírito Santo"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="quick-actions container" aria-label="Acessos rápidos">
-      <article class="action-card action-card-blue">
-        <div class="action-icon">⌖</div>
-        <div>
-          <h2>Conheça nossas<br>unidades Wizard</h2>
-          <div class="red-rule"></div>
-          <p>Escolha a unidade mais próxima e confira horários, cursos e formas de contato.</p>
-          <a class="action-button action-button-red" href="#unidades">Ver unidades <span>→</span></a>
-        </div>
-      </article>
-      <article class="action-card action-card-light">
-        <img src="img/logodaWIP2.png" alt="Wizard International Program" class="wip-logo">
-        <div>
-          <h2>Compre aqui seu<br><strong>material didático WIP</strong></h2>
-          <div class="red-rule"></div>
-          <p>Adquira agora o material do Wizard International Program.</p>
-          <a class="action-button action-button-navy" href="compramatricula.html">Comprar material <span>→</span></a>
-        </div>
-      </article>
-    </section>
-
-    <section class="units-section container" id="unidades" aria-labelledby="units-title">
-      <div class="section-heading">
-        <p class="section-kicker">Onde você estiver, a Wizard está perto</p>
-        <h2 id="units-title">Nossas unidades no Espírito Santo</h2>
-        <p>Encontre a escola mais próxima e dê o primeiro passo para falar inglês.</p>
-      </div>
-      <div class="units-grid">
-        <a class="unit-card" href="http://www.wizard.com.br/escolas/serralaranjeiras/" target="_blank" rel="noopener">
-          <img src="images/unidades/laranjeiras.jpeg" alt="Fachada da Wizard Laranjeiras" loading="lazy">
-          <div class="unit-card-content"><span class="unit-city">Serra</span><h3>Laranjeiras</h3><p>Av. Primeira Avenida, 148<br>Serra - ES</p><span class="unit-arrow">→</span></div>
-        </a>
-        <a class="unit-card" href="http://www.wizard.com.br/escolas/serrajacaraipe/" target="_blank" rel="noopener">
-          <img src="images/unidades/jacaraipe.jpg" alt="Fachada da Wizard Jacaraípe" loading="lazy">
-          <div class="unit-card-content"><span class="unit-city">Serra</span><h3>Jacaraípe</h3><p>Av. Abido Saadi, 4227<br>Serra - ES</p><span class="unit-arrow">→</span></div>
-        </a>
-        <a class="unit-card" href="http://www.wizard.com.br/escolas/vitoriacamburi/" target="_blank" rel="noopener">
-          <img src="images/unidades/camburi.jpeg" alt="Fachada da Wizard Jardim Camburi" loading="lazy">
-          <div class="unit-card-content"><span class="unit-city">Vitória</span><h3>Jardim Camburi</h3><p>R. Carlos Martins, 838<br>Vitória - ES</p><span class="unit-arrow">→</span></div>
-        </a>
-        <a class="unit-card" href="http://www.wizard.com.br/escolas/vitoriabentoferreira/" target="_blank" rel="noopener">
-          <img src="images/unidades/bento-ferreira.png" alt="Fachada da Wizard Bento Ferreira" loading="lazy">
-          <div class="unit-card-content"><span class="unit-city">Vitória</span><h3>Bento Ferreira</h3><p>Av. Cezar Hilal, 570<br>Vitória - ES</p><span class="unit-arrow">→</span></div>
-        </a>
-        <a class="unit-card" href="https://www.wizard.com.br/escolas/vilavelhapraiadeitaparica/" target="_blank" rel="noopener">
-          <img src="images/unidades/itaparica.jpeg" alt="Fachada da Wizard Praia de Itaparica" loading="lazy">
-          <div class="unit-card-content"><span class="unit-city">Vila Velha</span><h3>Praia de Itaparica</h3><p>Av. Saturnino Rangel Mauro, 101<br>Vila Velha - ES</p><span class="unit-arrow">→</span></div>
-        </a>
-      </div>
-    </section>
-
-    <section class="benefits" id="diferenciais">
-      <div class="container benefits-grid">
-        <div class="benefit"><span class="benefit-icon">◎</span><p><strong>Referência mundial</strong><br>em ensino de idiomas</p></div>
-        <div class="benefit"><span class="benefit-icon">♧</span><p><strong>Metodologia exclusiva</strong><br>e comprovada</p></div>
-        <div class="benefit"><span class="benefit-icon">▣</span><p><strong>Certificação</strong><br>internacional</p></div>
-        <div class="benefit"><span class="benefit-icon">☆</span><p><strong>Para todas as idades</strong><br>e objetivos</p></div>
-      </div>
-    </section>
-
-    <section class="courses-strip" id="cursos">
-      <div class="container courses-inner">
-        <div><p class="section-kicker">Aprenda do seu jeito</p><h2>Um idioma para cada sonho.</h2></div>
-        <p>Inglês, espanhol e outros idiomas com uma metodologia que acompanha seus objetivos.</p>
-        <a class="primary-button" href="https://www.wizard.com.br/cursos/ingles/" target="_blank" rel="noopener">Conheça os cursos <span>→</span></a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer" id="contato">
-    <div class="container footer-top">
-      <div class="footer-brand"><img src="img/wizard-logo.png" alt="Wizard by Pearson"><span>ESPÍRITO SANTO</span></div>
-      <div class="footer-social"><h3>Siga nossas redes</h3><div><a href="https://www.instagram.com/wizardespiritosanto/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/wizardespiritosanto/" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/channel/UCafACn54HZ2-grujAus997Q" target="_blank" rel="noopener">YouTube</a></div></div>
-      <div class="footer-contact"><h3>Fale com a gente</h3><a href="tel:+552733285858">☎ (27) 3328-5858</a><a href="mailto:contato@wizardes.com.br">✉ contato@wizardes.com.br</a></div>
-    </div>
-    <div class="container footer-bottom">Copyright © 2026 Wizard Espírito Santo — Todos os direitos reservados. by Jonathan Bittencurt</div>
-  </footer>
-</body>
-</html>
